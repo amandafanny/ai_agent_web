@@ -44,9 +44,26 @@ export const setCookie = async (name: string, value: unknown, days = 1) => {
   }
 };
 
-// // 设置 cookie
-// document.cookie = "username=John Doe; path=/";
-
-// // 获取所有 cookie
-// const allCookies = document.cookie;
-// console.log(allCookies);
+export const getCookie = async (name: string): Promise<string | null> => {
+  try {
+    // 检查 cookieStore 是否支持
+    if (typeof cookieStore !== "undefined") {
+      // 使用 cookieStore API 获取 cookie
+      const cookie = await cookieStore.get(name);
+      return cookie ? cookie.value : null;
+    } else {
+      // 使用 document.cookie 获取 cookie 并解析
+      const match = document.cookie.match(
+        new RegExp("(^| )" + name + "=([^;]+)")
+      );
+      return match ? decodeURIComponent(match[2]) : null;
+    }
+  } catch (error) {
+    console.error("Error while getting cookie:", error);
+    // 作为最后手段，尝试使用 document.cookie 来获取 cookie
+    const match = document.cookie.match(
+      new RegExp("(^| )" + name + "=([^;]+)")
+    );
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+};

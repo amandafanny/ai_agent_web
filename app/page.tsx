@@ -1,6 +1,4 @@
 "use client";
-import { AssistantModal, useEdgeRuntime } from "@assistant-ui/react";
-import { createOpenAI, openai } from "@ai-sdk/openai";
 import Link from "next/link";
 
 // async function streamMessage({
@@ -24,15 +22,15 @@ import Link from "next/link";
 // }
 
 export default function Home() {
-  const runtime = useEdgeRuntime({
-    api: "/api/chat",
-  });
+  // const runtime = useEdgeRuntime({
+  //   api: "/api/chat",
+  // });
 
   return (
     <main className="h-dvh">
       <div className="text-center mt-[3rem]">
         <Link href="/agent">Agent</Link>
-        <AssistantModal runtime={runtime} />
+        {/* <AssistantModal runtime={runtime} /> */}
       </div>
     </main>
   );
