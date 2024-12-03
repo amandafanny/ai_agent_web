@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Login() {
-  const [username, setUserName] = useState("test2@gmail.com");
-  const [password, setPassword] = useState("123456");
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const login = async (event: any) => {
     event.preventDefault(); // 阻止默认提交行为
     if (password !== "" && username !== "") {
@@ -22,6 +22,7 @@ export default function Login() {
       if (data.code === 0) {
         console.log("注册成功");
         setCookie("token", data.data.token);
+        window.location.href = "/";
       }
     }
   };
