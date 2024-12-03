@@ -26,27 +26,27 @@ const Register = () => {
       ).json();
       console.log("data", data);
       if (data.code === 0) {
-        console.log("注册成功");
         setCookie("token", data.data.token);
+        window.location.href = "/agent";
       }
     }
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg shadow-md p-8 w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">注册</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
         <form>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="username"
             >
-              用户名
+              Username
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
-              placeholder="请输入邮箱"
+              placeholder="Please enter username"
               required
               value={username}
               onChange={(e) => {
@@ -59,13 +59,13 @@ const Register = () => {
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="password"
             >
-              密码
+              Password
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
-              placeholder="请输入密码"
+              placeholder="Please enter password"
               required
               value={password}
               onChange={(e) => {
@@ -78,13 +78,13 @@ const Register = () => {
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="confirmPassword"
             >
-              确认密码
+              ConfirmPassword
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="confirmPassword"
               type="password"
-              placeholder="请确认密码"
+              placeholder="Please enter confirmPassword"
               required
               value={confirmPassword}
               onChange={(e) => {
@@ -98,14 +98,14 @@ const Register = () => {
               type="submit"
               onClick={register}
             >
-              注册
+              Register
             </button>
           </div>
         </form>
         <div className="mt-4 text-center">
-          <span>已有账号？</span>
+          <span>Have Account</span>
           <a href="/login" className="text-blue-500 hover:text-blue-800">
-            登录
+            Login
           </a>
         </div>
       </div>

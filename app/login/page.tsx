@@ -22,7 +22,7 @@ export default function Login() {
       if (data.code === 0) {
         console.log("注册成功");
         setCookie("token", data.data.token);
-        window.location.href = "/";
+        window.location.href = "/agent";
       }
     }
   };
@@ -30,19 +30,19 @@ export default function Login() {
     <main className="text-center">
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white rounded-lg shadow-md p-8 w-96">
-          <h2 className="text-2xl font-bold mb-6 text-center">登录</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
           <form>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="username"
               >
-                用户名
+                Username
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
-                placeholder="请输入用户名"
+                placeholder="please enter username"
                 required
                 value={username}
                 onChange={(e) => {
@@ -55,13 +55,13 @@ export default function Login() {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                密码
+                Password
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
-                placeholder="请输入密码"
+                placeholder="please enter password"
                 required
                 value={password}
                 onChange={(e) => {
@@ -75,22 +75,17 @@ export default function Login() {
                 type="submit"
                 onClick={login}
               >
-                登录
+                Login
               </button>
             </div>
           </form>
           <div className="mt-4 text-center">
-            <a href="#" className="text-blue-500 hover:text-blue-800">
-              忘记密码？
-            </a>
-          </div>
-          <div className="mt-4 text-center">
-            <span>没有账号？</span>
+            <span>No account?</span>
             <Link
               href="/register"
               className="text-blue-500 hover:text-blue-800"
             >
-              注册
+              Register
             </Link>
           </div>
         </div>
