@@ -15,12 +15,6 @@ interface Message {
 export default function Agent() {
   const [messageList, setMessageList] = useState<Message[]>([
     { content: "What can I do for you?", hash: "1", type: "agent" },
-    {
-      content:
-        "抱歉，作为一个虚拟助手我无法提供实时的天气信息。请你查询天气预报或者使用天气应用来获取今天的天气情况。有什么其他问题我可以帮助你的吗？",
-      hash: "2",
-      type: "user",
-    },
   ]);
   const [msg, setMsg] = useState("");
   const [socket, setSocket] = useState<WebSocket | null>(null);
@@ -62,20 +56,22 @@ export default function Agent() {
 
     ws.onmessage = (event) => {
       console.log("收到消息:", event.data);
-      setMessageList((prevMessages: Message[]) => {
-        const list = [
-          ...prevMessages,
-          {
-            type: "agent" as MessageType,
-            content: event.data,
-            hash: SHA256(event.data).toString(),
-          },
-        ];
-        if (list.length < 10) {
-          return list;
-        }
-        return list.slice(-10);
-      });
+      if (event.data !== "") {
+        setMessageList((prevMessages: Message[]) => {
+          const list = [
+            ...prevMessages,
+            {
+              type: "agent" as MessageType,
+              content: event.data,
+              hash: SHA256(event.data).toString(),
+            },
+          ];
+          if (list.length < 10) {
+            return list;
+          }
+          return list.slice(-10);
+        });
+      }
     };
 
     ws.onclose = () => {
@@ -91,6 +87,7 @@ export default function Agent() {
       if (ws) ws.close();
     };
   }, [token]);
+
   return (
     <main className="h-dvh flex">
       <div className="mx-auto w-[50%] mt-[3rem] flex flex-col">
