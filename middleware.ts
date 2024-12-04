@@ -11,9 +11,21 @@ export default async function middleware(request: NextRequest) {
   const cookieStore = await cookies();
   const token = await cookieStore.get("token");
   console.log("token", token);
+
   // Specify the correct route based on the requests location
   if (token?.value) {
-    return;
+    const result = await (
+      await fetch("http://pythix-api.erc7527.com/api/user/agentInfo", {
+        headers: {
+          token: token.value,
+        },
+      })
+    ).json();
+    if (result.code === 403) {
+      request.nextUrl.pathname = "/login";
+    } else {
+      return;
+    }
   } else {
     request.nextUrl.pathname = "/login";
   }
