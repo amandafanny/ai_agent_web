@@ -88,6 +88,13 @@ export default function Agent() {
     };
   }, [token]);
 
+  const handleKeyDown = (event: any) => {
+    console.log("event.key", event.key);
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  };
+
   return (
     <main className="h-dvh flex">
       <div className="mx-auto w-[50%] mt-[3rem] flex flex-col">
@@ -136,6 +143,7 @@ export default function Agent() {
             onChange={(e) => {
               setMsg(e.target.value);
             }}
+            onKeyDown={handleKeyDown}
           />
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 focus:outline-none"
