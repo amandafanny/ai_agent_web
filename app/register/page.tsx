@@ -6,6 +6,7 @@ const Register = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const register = async (event: any) => {
     event.preventDefault(); // 阻止默认提交行为
     if (

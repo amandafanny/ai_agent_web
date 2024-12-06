@@ -6,6 +6,7 @@ import { useState } from "react";
 export default function Login() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const login = async (event: any) => {
     event.preventDefault(); // 阻止默认提交行为
     if (password !== "" && username !== "") {

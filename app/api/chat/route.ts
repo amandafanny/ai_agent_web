@@ -1,4 +1,4 @@
-import { createOpenAI, openai } from "@ai-sdk/openai";
+import { openai } from "@ai-sdk/openai";
 import { getEdgeRuntimeResponse } from "@assistant-ui/react/edge";
 
 // This optional property can be used to specify the maximum duration in seconds that your function can run for. This can't be set when the runtime is set to edge

@@ -88,6 +88,7 @@ export default function Agent() {
     };
   }, [token]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleKeyDown = (event: any) => {
     console.log("event.key", event.key);
     if (event.key === "Enter") {
